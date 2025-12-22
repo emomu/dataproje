@@ -6,10 +6,9 @@ Client 1'den veri alır, bozar ve Client 2'ye iletir.
 
 import socket
 import random
-import sys
-import time
 
-# ==================== HATA ENJEKSİYON FONKSİYONLARI ====================
+
+
 
 def bit_flip(data, num_flips=1):
     """
@@ -109,7 +108,7 @@ def multiple_bit_flips(data):
     num_flips = random.randint(2, 5)
     return bit_flip(data, num_flips)
 
-# ==================== SERVER FONKSİYONLARI ====================
+
 
 def corrupt_data(data, error_type=None):
     """
@@ -160,7 +159,7 @@ def send_to_client2(packet, client2_host, client2_port):
         print(f"✗ Client 2'ye gönderilirken hata: {e}")
         return False
 
-# ==================== ANA PROGRAM ====================
+
 
 def main():
     SERVER_HOST = 'localhost'

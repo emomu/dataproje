@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-CLIENT 1 - Data Sender
-Kullanıcıdan metin alır, kontrol bilgisi üretir ve server'a gönderir.
-"""
 
 import socket
 import sys
@@ -47,29 +42,26 @@ def calculate_crc16(data):
     return format(crc, '04X')  # 4 haneli hex olarak döndür
 
 def calculate_internet_checksum(data):
-    """
-    Internet Checksum (IP Checksum) hesaplar.
-    16-bit kelimeler toplamının 1'e tümleyeni.
-    """
-    # Veriyi bytes'a çevir
-    data_bytes = data.encode('utf-8')
+    data_bytes = data.encode('utf-8')  # 1. Metni byte dizisine çevir.
     
-    # Tek sayıda byte varsa sonuna 0 ekle
+    # 2. EĞER byte sayısı tekse (örn: 3 byte), sonuna 0 ekleyip çiftle.
     if len(data_bytes) % 2 == 1:
         data_bytes += b'\x00'
     
-    # 16-bit kelimelere böl ve topla
     total = 0
+    # 3. Veriyi 2'şer byte (16-bit) atlayarak gez.
     for i in range(0, len(data_bytes), 2):
+        # 4. İki byte'ı birleştirip 16 bitlik bir kelime (word) yap.
         word = (data_bytes[i] << 8) + data_bytes[i + 1]
-        total += word
-        # Taşmayı (carry) ekle
+        total += word  # 5. Toplama ekle.
+        
+        # 6. TAŞMA KONTROLÜ: Eğer sayı 16 bitten büyükse, taşan kısmı başa ekle.
         total = (total & 0xFFFF) + (total >> 16)
     
-    # 1'e tümleyen (complement)
+    # 7. Sonucun tersini al (NOT işlemi) ve 16 bit ile maskele.
     checksum = ~total & 0xFFFF
     
-    return format(checksum, '04X')
+    return format(checksum, '04X') # 8. Hex formatında döndür.
 
 def calculate_2d_parity(data):
     """

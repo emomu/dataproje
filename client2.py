@@ -1,14 +1,8 @@
-#!/usr/bin/env python3
-"""
-CLIENT 2 - Receiver + Error Checker
-Server'dan veri alır, kontrol bilgisini yeniden hesaplar ve karşılaştırır.
-"""
 
 import socket
-import sys
 
-# ==================== KONTROL BİLGİSİ HESAPLAMA FONKSİYONLARI ====================
-# (Client 1 ile aynı fonksiyonlar)
+
+
 
 def calculate_even_parity(data):
     """
@@ -130,7 +124,6 @@ def calculate_2d_parity(data):
     
     return hex_result
 
-# ==================== KONTROL FONKSİYONU ====================
 
 def verify_data(data, method, received_control):
     """
@@ -154,7 +147,7 @@ def verify_data(data, method, received_control):
     
     return computed_control, status
 
-# ==================== ANA PROGRAM ====================
+
 
 def main():
     CLIENT2_HOST = 'localhost'
