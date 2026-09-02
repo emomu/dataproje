@@ -7,7 +7,7 @@ Client 1 (Data Sender): Accepts text input from the user and generates specific 
 
 
 
-Server (Intermediate Node + Data Corruptor): Acts as an agent that receives the packet, applies intentional data corruption, and forwards it to the final destination.
+Server (Intermediate Node + Data Corruptor): Acts as an agent that receives the packet, applies intentional data corruption, and forwards it to the final destination
 
 
 
